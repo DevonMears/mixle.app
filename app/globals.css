@@ -1,13 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --brand-blue: #4a9fd8;
-  --brand-purple: #8b5cf6;
-  --brand-orange: #ff8a3d;
-  --brand-red: #ef4444;
-  --brand-pink: #e91e63;
+@theme {
+  --color-brand-blue: #4a9fd8;
+  --color-brand-purple: #8b5cf6;
+  --color-brand-orange: #ff8a3d;
+  --color-brand-red: #ef4444;
+  --color-brand-pink: #e91e63;
 }
 
 body {
