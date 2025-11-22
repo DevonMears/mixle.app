@@ -43,6 +43,16 @@ npm install
    SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
    ```
 
+#### Run Database Migrations
+1. Go to your Supabase project → **SQL Editor**
+2. Follow the step-by-step guide in `supabase/SETUP.md`
+3. Run the 3 migration files in order:
+   - `20251122_init_schema.sql` (tables, indexes, functions)
+   - `20251122_rls_policies.sql` (security policies)
+   - `20251122_seed_data.sql` (event code + 10 bots)
+
+See detailed instructions: [supabase/SETUP.md](supabase/SETUP.md)
+
 ### 3. Run the Development Server
 ```bash
 npm run dev
@@ -59,9 +69,17 @@ mixle.app/
 │   ├── page.tsx           # Home page
 │   └── globals.css        # Global styles
 ├── lib/
-│   └── supabase/          # Supabase configuration
-│       ├── client.ts      # Client-side Supabase
-│       └── server.ts      # Server-side Supabase
+│   ├── supabase/          # Supabase configuration
+│   │   ├── client.ts      # Client-side Supabase
+│   │   └── server.ts      # Server-side Supabase
+│   └── types/             # TypeScript types
+│       └── database.types.ts  # Database types
+├── supabase/
+│   ├── migrations/        # Database migrations
+│   │   ├── 20251122_init_schema.sql
+│   │   ├── 20251122_rls_policies.sql
+│   │   └── 20251122_seed_data.sql
+│   └── SETUP.md          # Database setup guide
 ├── docs/                  # Project documentation
 │   ├── 00_PROJECT_OVERVIEW.md
 │   ├── 01_TECH_STACK.md
@@ -76,17 +94,35 @@ mixle.app/
 See the `/docs` folder for detailed documentation:
 - **00_PROJECT_OVERVIEW.md** - Vision, features, and architecture
 - **01_TECH_STACK.md** - Technology choices and rationale
-- **02_DATABASE_SCHEMA.md** - Database design (to be completed)
+- **02_DATABASE_SCHEMA.md** - Complete database schema with diagrams
 - **99_CHANGELOG.md** - Development history
+
+Also see:
+- **supabase/SETUP.md** - Step-by-step database setup guide
+
+## Database
+
+### Schema
+- 7 tables: users, event_codes, user_sessions, intents, matches, messages, declines
+- Row Level Security (RLS) enabled on all tables
+- Realtime subscriptions for matches, messages, and sessions
+- Admin cleanup function for demo resets
+
+### Seed Data
+- Event code: **AFROTECH2026**
+- **10 bot accounts** with diverse roles (Founder, Engineer, Designer, PM, etc.)
+
+See [02_DATABASE_SCHEMA.md](docs/02_DATABASE_SCHEMA.md) for full details.
 
 ## Next Steps
 
-1. Implement database schema in Supabase
-2. Build authentication flow
-3. Create matching system
-4. Build chat interface
-5. Add bot accounts
-6. Deploy to Vercel
+1. ✅ Database schema implemented
+2. ✅ Seed data created (event code + 10 bots)
+3. ➡️ Build authentication flow
+4. ➡️ Create matching system
+5. ➡️ Build chat interface
+6. ➡️ Add bot auto-response logic
+7. ➡️ Deploy to Vercel
 
 ## Tech Stack
 
